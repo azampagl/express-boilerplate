@@ -1,0 +1,31 @@
+{
+  "name": "application-name",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "config": {
+    "base_url": "",
+    "cfd": "s",
+    "cookieSecret": "823u8fewjknvdshijihuy790q23hi0ni",
+    "logDir": "./logs",
+    "uploads": "up"
+  },
+  "dependencies": {
+    "async": "*",
+    "express": "3.x",
+    "jade": "*",
+    "requirejs": "*",
+    "underscore": "*",
+    "winston": "*"
+  },
+  "devDependencies": {
+    "chai": "*",
+    "coffee-script": "*",
+    "docco": "*",
+    "mocha": "*",
+    "soda": "git://github.com/LearnBoost/soda.git#master",
+    "supertest": "*"
+  }
+}
