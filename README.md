@@ -1,6 +1,7 @@
 # Express Base
 
-### (c) Aaron Zampaglione 2012
+### MIT License
+### (c) 2012-present Aaron Zampaglione <azampagl@azampagl.com>
 
 This is a base application that uses Express, Mocha, Soda (Selenium), Docco, RequireJS (+ i18n), jQuery, Bootstrap, Backbone, and Less.
 
@@ -36,6 +37,8 @@ Running in production is pretty simple... just run server.js!
 While developing, turn on cake dev mode to automatically convert your .coffee files into .js files and place them in the "/app" folder.
 
     ./cake dev
+
+In addition, make sure that CodeKit is activated on your "/public/default" folder (or whatever theme is currently activated).  CodeKit will automatically convert CoffeeScript files to minified JavaScript ("/public/{theme}/coffee" => "/public/{theme}/js") and Less files to normal minified stylesheets ("/public/{theme}/less" => "/public/{theme}/css").
 
 ### Testing
 
