@@ -1,7 +1,6 @@
 .*
-!.gitignore
+~*
 
-app/*
-!app/i18n.js
+!.gitignore
 
 node_modules/*
