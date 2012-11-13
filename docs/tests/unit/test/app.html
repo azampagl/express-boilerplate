@@ -1,0 +1,57 @@
+<!DOCTYPE html>  <html> <head>   <title>app.coffee</title>   <meta http-equiv="content-type" content="text/html; charset=UTF-8">   <link rel="stylesheet" media="all" href="docco.css" /> </head> <body>   <div id="container">     <div id="background"></div>          <table cellpadding="0" cellspacing="0">       <thead>         <tr>           <th class="docs">             <h1>               app.coffee             </h1>           </th>           <th class="code">           </th>         </tr>       </thead>       <tbody>                               <tr id="section-1">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-1">&#182;</a>               </div>               <p>Root level operations for all the unit tests.</p>
+
+<p>"requirejs", "request" (supertest), "async", and "app" are initialized here and can referenced in all
+unit tests as long as they are nested within:</p>
+
+<pre><code>describe "app", -&gt;
+  it "should not be null" () =&gt;
+    @app.should.not.equal null
+</code></pre>
+
+<p><em>(c) 2012 Aaron Zampaglione <a href="&#x6D;&#x61;&#105;&#108;&#x74;&#x6F;:&#x61;&#122;&#97;&#109;p&#97;&#103;&#x6C;&#64;&#97;&#x7A;&#x61;&#x6D;&#112;a&#103;&#108;&#x2E;&#x63;&#111;&#109;">&#x61;&#122;&#97;&#109;p&#97;&#103;&#x6C;&#64;&#97;&#x7A;&#x61;&#x6D;&#112;a&#103;&#108;&#x2E;&#x63;&#111;&#109;</a></em></p>             </td>             <td class="code">               <div class="highlight"><pre></pre></div>             </td>           </tr>                               <tr id="section-2">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-2">&#182;</a>               </div>               <h1>before()</h1>
+
+<p>Initializes requirejs.</p>             </td>             <td class="code">               <div class="highlight"><pre><span class="nx">before</span> <span class="nf">() -&gt;</span>
+  <span class="nv">path = </span><span class="nx">require</span><span class="p">(</span><span class="s">&#39;path&#39;</span><span class="p">)</span>
+  <span class="nv">requirejs = </span><span class="nx">require</span><span class="p">(</span><span class="s">&#39;requirejs&#39;</span><span class="p">)</span>
+  <span class="vi">@requirejs = </span><span class="nx">requirejs</span><span class="p">.</span><span class="nx">config</span>
+    <span class="nv">baseUrl: </span><span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s">&#39;../../../../app&#39;</span><span class="p">)</span></pre></div>             </td>           </tr>                               <tr id="section-3">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-3">&#182;</a>               </div>               <h1>beforeEach</h1>
+
+<p>Initializes app.</p>             </td>             <td class="code">               <div class="highlight"><pre><span class="nx">beforeEach</span> <span class="nf">(done) -&gt;</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s">&quot;beforeEach&quot;</span>
+  <span class="nx">@requirejs</span> <span class="p">[</span><span class="s">&#39;app&#39;</span><span class="p">],</span> <span class="p">(</span><span class="nx">app</span><span class="p">)</span> <span class="o">=&gt;</span></pre></div>             </td>           </tr>                               <tr id="section-4">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-4">&#182;</a>               </div>               <p>Async load the app and continue when done.</p>             </td>             <td class="code">               <div class="highlight"><pre>    <span class="nx">app</span> <span class="p">(</span><span class="nx">app</span><span class="p">)</span> <span class="o">=&gt;</span>
+      <span class="vi">@app = </span><span class="nx">app</span>
+      <span class="nx">done</span><span class="p">()</span>
+
+<span class="nx">describe</span> <span class="s">&quot;app&quot;</span><span class="p">,</span> <span class="o">-&gt;</span></pre></div>             </td>           </tr>                               <tr id="section-5">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-5">&#182;</a>               </div>               <h1>app</h1>
+
+<p>Global reference to the application.</p>             </td>             <td class="code">               <div class="highlight"><pre>  <span class="vi">@app = </span><span class="kc">null</span></pre></div>             </td>           </tr>                               <tr id="section-6">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-6">&#182;</a>               </div>               <h1>async</h1>
+
+<p>Global reference to the async library.</p>             </td>             <td class="code">               <div class="highlight"><pre>  <span class="vi">@async = </span><span class="nx">require</span><span class="p">(</span><span class="s">&#39;async&#39;</span><span class="p">)</span></pre></div>             </td>           </tr>                               <tr id="section-7">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-7">&#182;</a>               </div>               <h1>request</h1>
+
+<p>Supertest request object.</p>             </td>             <td class="code">               <div class="highlight"><pre>  <span class="vi">@request = </span><span class="nx">require</span><span class="p">(</span><span class="s">&#39;supertest&#39;</span><span class="p">)</span></pre></div>             </td>           </tr>                               <tr id="section-8">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-8">&#182;</a>               </div>               <h1>requirejs</h1>
+
+<p>Global reference to requirejs.</p>             </td>             <td class="code">               <div class="highlight"><pre>  <span class="vi">@requirejs = </span><span class="kc">null</span></pre></div>             </td>           </tr>                               <tr id="section-9">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-9">&#182;</a>               </div>               <h1>before()</h1>
+
+<p>Initializes requirejs.</p>
+
+<p>before () =>
+ path = require('path')
+ requirejs = require('requirejs')</p>
+
+<p>@requirejs = requirejs.config
+   baseUrl: path.resolve(__dirname, '../../../../app')</p>             </td>             <td class="code">               <div class="highlight"><pre></pre></div>             </td>           </tr>                               <tr id="section-10">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-10">&#182;</a>               </div>               <h1>beforeEach</h1>
+
+<p>Initializes app.</p>
+
+<p>beforeEach (done) =>
+ console.log "beforeEach"
+ @requirejs ['app'], (app) =>
+   # Async load the app and continue when done.
+   app (app) =>
+     @app = app
+     done()</p>             </td>             <td class="code">               <div class="highlight"><pre>  <span class="nx">it</span> <span class="s">&quot;should not be null&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">done</span><span class="p">)</span> <span class="o">=&gt;</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="k">this</span>
+    <span class="nx">@app</span><span class="p">.</span><span class="nx">should</span><span class="p">.</span><span class="o">not</span><span class="p">.</span><span class="nx">equal</span> <span class="kc">null</span>
+    <span class="nx">done</span><span class="p">()</span>
+
+</pre></div>             </td>           </tr>                </tbody>     </table>   </div> </body> </html> 

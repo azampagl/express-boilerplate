@@ -1,0 +1,23 @@
+<!DOCTYPE html>  <html> <head>   <title>theme.coffee</title>   <meta http-equiv="content-type" content="text/html; charset=UTF-8">   <link rel="stylesheet" media="all" href="docco.css" /> </head> <body>   <div id="container">     <div id="background"></div>            <div id="jump_to">         Jump To &hellip;         <div id="jump_wrapper">           <div id="jump_page">                                           <a class="source" href="i18n.html">                 i18n.coffee               </a>                                           <a class="source" href="logger.html">                 logger.coffee               </a>                                           <a class="source" href="router.html">                 router.coffee               </a>                                           <a class="source" href="theme.html">                 theme.coffee               </a>                        </div>         </div>       </div>          <table cellpadding="0" cellspacing="0">       <thead>         <tr>           <th class="docs">             <h1>               theme.coffee             </h1>           </th>           <th class="code">           </th>         </tr>       </thead>       <tbody>                               <tr id="section-1">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-1">&#182;</a>               </div>               <p><em>MIT License</em></p>
+
+<p><em>(c) 2012-Present Aaron Zampaglione <a href="&#109;&#x61;&#x69;&#108;t&#111;:&#97;z&#97;&#x6D;&#112;&#x61;&#103;&#x6C;&#64;&#97;&#x7A;&#x61;&#x6D;pa&#103;&#108;&#46;&#99;&#111;&#109;">&#97;z&#97;&#x6D;&#112;&#x61;&#103;&#x6C;&#64;&#97;&#x7A;&#x61;&#x6D;pa&#103;&#108;&#46;&#99;&#111;&#109;</a></em></p>
+
+<p>Theme middleware for the express framework.</p>
+
+<pre><code>// Use
+res.theme('index');
+// instead of (assuming you are using theme 'default')
+res.render('default/index')
+</code></pre>             </td>             <td class="code">               <div class="highlight"><pre></pre></div>             </td>           </tr>                               <tr id="section-2">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-2">&#182;</a>               </div>                            </td>             <td class="code">               <div class="highlight"><pre><span class="nx">define</span> <span class="p">[],</span> <span class="nf">() -&gt;</span></pre></div>             </td>           </tr>                               <tr id="section-3">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-3">&#182;</a>               </div>               <h1>theme</h1>
+
+<p>The default theme.</p>             </td>             <td class="code">               <div class="highlight"><pre>  <span class="nv">theme: </span><span class="s">&#39;default&#39;</span></pre></div>             </td>           </tr>                               <tr id="section-4">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-4">&#182;</a>               </div>               <h1>middleware()</h1>
+
+<p>Middleware function for the express framework use function.</p>
+
+<pre><code>app.use theme.middleware()
+</code></pre>             </td>             <td class="code">               <div class="highlight"><pre>  <span class="nv">middleware: </span><span class="o">-&gt;</span>
+    <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="o">=&gt;</span>
+      <span class="nv">res.theme = </span><span class="p">(</span><span class="nx">view</span><span class="p">,</span> <span class="nx">options</span><span class="p">,</span> <span class="nx">fn</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">@theme</span> <span class="o">+</span> <span class="s">&#39;/&#39;</span> <span class="o">+</span> <span class="nx">view</span><span class="p">,</span> <span class="nx">options</span><span class="p">,</span> <span class="nx">fn</span><span class="p">)</span>
+      <span class="nx">next</span><span class="p">()</span>
+
+</pre></div>             </td>           </tr>                </tbody>     </table>   </div> </body> </html> 

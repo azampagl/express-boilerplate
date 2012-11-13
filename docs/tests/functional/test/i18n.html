@@ -1,0 +1,26 @@
+<!DOCTYPE html>  <html> <head>   <title>i18n.coffee</title>   <meta http-equiv="content-type" content="text/html; charset=UTF-8">   <link rel="stylesheet" media="all" href="docco.css" /> </head> <body>   <div id="container">     <div id="background"></div>            <div id="jump_to">         Jump To &hellip;         <div id="jump_wrapper">           <div id="jump_page">                                           <a class="source" href="i18n.html">                 i18n.coffee               </a>                                           <a class="source" href="index.html">                 index.coffee               </a>                        </div>         </div>       </div>          <table cellpadding="0" cellspacing="0">       <thead>         <tr>           <th class="docs">             <h1>               i18n.coffee             </h1>           </th>           <th class="code">           </th>         </tr>       </thead>       <tbody>                               <tr id="section-1">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-1">&#182;</a>               </div>               <p>Test the i18n page (change languages).</p>
+
+<ol>
+<li>Launch the homepage.</li>
+<li>Make sure the title says "Title".</li>
+<li>Use the drop down box on the navbar to change the language to spanish.</li>
+<li>Make sure a cookie exists for "lang" (and that it equals "es").</li>
+<li>Make sure the title says "Título".</li>
+</ol>
+
+<p><em>(c) 2012 Aaron Zampaglione <a href="&#x6D;&#97;&#105;l&#x74;&#111;:&#97;&#122;&#x61;&#109;&#x70;&#97;&#x67;&#x6C;&#x40;&#97;&#x7A;a&#x6D;&#x70;&#x61;&#x67;&#108;&#x2E;c&#111;&#x6D;">&#97;&#122;&#x61;&#109;&#x70;&#97;&#x67;&#x6C;&#x40;&#97;&#x7A;a&#x6D;&#x70;&#x61;&#x67;&#108;&#x2E;c&#111;&#x6D;</a></em></p>             </td>             <td class="code">               <div class="highlight"><pre><span class="nx">define</span> <span class="p">[],</span> <span class="nf">() -&gt;</span>
+  <span class="nf">(browser, next) -&gt;</span>
+    <span class="nx">browser</span>
+      <span class="p">.</span><span class="nx">chain</span>
+      <span class="p">.</span><span class="nx">session</span><span class="p">()</span>
+      <span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">assertTitle</span><span class="p">(</span><span class="s">&#39;Title&#39;</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">clickAndWait</span><span class="p">(</span><span class="s">&#39;link=Español (España)&#39;</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">assertCookiePresent</span><span class="p">(</span><span class="s">&#39;lang&#39;</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">assertCookieByName</span><span class="p">(</span><span class="s">&#39;lang&#39;</span><span class="p">,</span> <span class="s">&#39;es&#39;</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">assertTitle</span><span class="p">(</span><span class="s">&#39;Título&#39;</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">end</span> <span class="nf">(err) -&gt;</span>
+        <span class="nx">browser</span><span class="p">.</span><span class="nx">testComplete</span> <span class="o">-&gt;</span>
+          <span class="nx">next</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+
+</pre></div>             </td>           </tr>                </tbody>     </table>   </div> </body> </html> 

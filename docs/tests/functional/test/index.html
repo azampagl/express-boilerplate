@@ -1,0 +1,13 @@
+<!DOCTYPE html>  <html> <head>   <title>index.coffee</title>   <meta http-equiv="content-type" content="text/html; charset=UTF-8">   <link rel="stylesheet" media="all" href="docco.css" /> </head> <body>   <div id="container">     <div id="background"></div>            <div id="jump_to">         Jump To &hellip;         <div id="jump_wrapper">           <div id="jump_page">                                           <a class="source" href="i18n.html">                 i18n.coffee               </a>                                           <a class="source" href="index.html">                 index.coffee               </a>                        </div>         </div>       </div>          <table cellpadding="0" cellspacing="0">       <thead>         <tr>           <th class="docs">             <h1>               index.coffee             </h1>           </th>           <th class="code">           </th>         </tr>       </thead>       <tbody>                               <tr id="section-1">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-1">&#182;</a>               </div>               <p>Make sure we can launch the index page.</p>
+
+<p><em>(c) 2012 Aaron Zampaglione <a href="&#109;&#97;&#105;&#108;&#x74;&#x6F;:a&#x7A;&#97;&#109;pa&#x67;&#108;&#x40;&#97;&#122;&#x61;&#x6D;&#112;&#x61;&#103;&#108;&#46;&#x63;&#111;m">a&#x7A;&#97;&#109;pa&#x67;&#108;&#x40;&#97;&#122;&#x61;&#x6D;&#112;&#x61;&#103;&#108;&#46;&#x63;&#111;m</a></em></p>             </td>             <td class="code">               <div class="highlight"><pre><span class="nx">define</span> <span class="p">[],</span> <span class="nf">() -&gt;</span>
+  <span class="nf">(browser, next) -&gt;</span>
+    <span class="nx">browser</span>
+      <span class="p">.</span><span class="nx">chain</span>
+      <span class="p">.</span><span class="nx">session</span><span class="p">()</span>
+      <span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">end</span> <span class="nf">(err) -&gt;</span>
+        <span class="nx">browser</span><span class="p">.</span><span class="nx">testComplete</span> <span class="o">-&gt;</span>
+          <span class="nx">next</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+
+</pre></div>             </td>           </tr>                </tbody>     </table>   </div> </body> </html> 

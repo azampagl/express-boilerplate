@@ -1,0 +1,32 @@
+<!DOCTYPE html>  <html> <head>   <title>run.coffee</title>   <meta http-equiv="content-type" content="text/html; charset=UTF-8">   <link rel="stylesheet" media="all" href="docco.css" /> </head> <body>   <div id="container">     <div id="background"></div>          <table cellpadding="0" cellspacing="0">       <thead>         <tr>           <th class="docs">             <h1>               run.coffee             </h1>           </th>           <th class="code">           </th>         </tr>       </thead>       <tbody>                               <tr id="section-1">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-1">&#182;</a>               </div>               <p>Main execution file for functional tests.</p>
+
+<p>Make sure you have completed the following before running:
+ 1. Configure the proper tests and browsers in the "config" directory.
+ 2. Run selenium server (java -jar selenium-server.jar).
+ 3. Run the actual application (node server.js).
+ 4. Run this file (node app/tests/functional/run.js)</p>
+
+<p>@see ./config</p>
+
+<p><em>(c) 2012 Aaron Zampaglione <a href="&#x6D;&#97;&#105;&#x6C;t&#x6F;:&#x61;&#122;&#x61;&#109;&#112;&#x61;&#103;&#x6C;&#64;&#x61;&#122;&#x61;&#109;&#x70;&#x61;&#103;&#x6C;&#x2E;&#99;&#111;m">&#x61;&#122;&#x61;&#109;&#112;&#x61;&#103;&#x6C;&#64;&#x61;&#122;&#x61;&#109;&#x70;&#x61;&#103;&#x6C;&#x2E;&#99;&#111;m</a></em></p>             </td>             <td class="code">               <div class="highlight"><pre><span class="nv">requirejs = </span><span class="nx">require</span><span class="p">(</span><span class="s">&#39;requirejs&#39;</span><span class="p">)</span>
+
+<span class="nx">requirejs</span><span class="p">.</span><span class="nx">config</span>
+  <span class="nv">baseUrl: </span><span class="nx">__dirname</span>
+  <span class="nv">nodeRequire: </span><span class="nx">require</span>
+
+<span class="nx">requirejs</span> <span class="p">[</span><span class="s">&#39;async&#39;</span><span class="p">,</span> <span class="s">&#39;config/main&#39;</span><span class="p">,</span> <span class="s">&#39;config/browsers&#39;</span><span class="p">,</span> <span class="s">&#39;config/tests&#39;</span><span class="p">],</span> <span class="nf">(async, config, browsers, tests) -&gt;</span>
+  <span class="nx">async</span><span class="p">.</span><span class="nx">forEachSeries</span> <span class="nx">browsers</span><span class="p">,</span> <span class="p">(</span><span class="nf">(browser, next) -&gt;</span>
+
+    <span class="nx">requirejs</span> <span class="p">[</span><span class="s">&#39;config/browsers/&#39;</span> <span class="o">+</span> <span class="nx">browser</span><span class="p">],</span> <span class="nf">(browser) -&gt;</span></pre></div>             </td>           </tr>                               <tr id="section-2">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-2">&#182;</a>               </div>               <p>Run browser as a function to actually init the browser.</p>             </td>             <td class="code">               <div class="highlight"><pre>      <span class="nv">browser = </span><span class="nx">browser</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">host</span><span class="p">,</span> <span class="nx">config</span><span class="p">.</span><span class="nx">port</span><span class="p">,</span> <span class="nx">config</span><span class="p">.</span><span class="nx">url</span><span class="p">)</span>
+
+      <span class="nx">async</span><span class="p">.</span><span class="nx">forEachSeries</span> <span class="nx">tests</span><span class="p">,</span> <span class="p">(</span><span class="nf">(test, subnext) -&gt;</span>
+
+        <span class="nx">requirejs</span> <span class="p">[</span><span class="s">&#39;test/&#39;</span> <span class="o">+</span> <span class="nx">test</span><span class="p">],</span> <span class="nf">(test) -&gt;</span><span class="nx">test</span><span class="p">(</span><span class="nx">browser</span><span class="p">,</span> <span class="nx">subnext</span><span class="p">)</span>
+
+      <span class="p">),</span> <span class="nf">(err) -&gt;</span>
+        <span class="nx">next</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+
+  <span class="p">),</span> <span class="nf">(err) -&gt;</span>
+    <span class="k">throw</span> <span class="nx">err</span> <span class="k">if</span> <span class="nx">err</span>
+
+</pre></div>             </td>           </tr>                </tbody>     </table>   </div> </body> </html> 
