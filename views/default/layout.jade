@@ -1,0 +1,51 @@
+extends ../layout
+
+block styles
+  link(type='text/css', rel='stylesheet', href=app.CFD + '/default/css/main.css?v=' + app.VERSION)
+
+block body
+  .navbar.navbar-inverse.navbar-fixed-top
+    .navbar-inner
+      .container-fluid
+
+        a(data-toggle='collapse', data-target='.subnav-collapse').btn.btn-navbar
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+
+        a(href='#').brand #{strings.meta_title}
+
+        .nav-collapse.subnav-collapse
+          ul.nav
+            li
+              a(href='#') #{strings.home}
+
+            li.divider-vertical
+
+            li
+              a(href='#') #{strings.link}
+
+            li.divider-vertical
+
+            li
+              a(href='#') #{strings.link}
+
+          ul.nav.pull-right
+            li.dropdown
+              a(href='#', data-toggle='dropdown').dropdown-toggle #{strings.language} 
+                b.caret
+              ul.dropdown-menu
+                each lang in common.langs
+                  li
+                    a(href='i18n/' + lang) #{strings['languages_' + lang]}
+
+  .container-fluid
+    .hero-unit
+      h1 #{strings.header_title}
+      p #{strings.header_intro}
+
+    block content
+
+    hr
+    footer
+      p &copy; #{(new Date).getFullYear()}
