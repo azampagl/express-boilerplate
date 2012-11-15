@@ -34,19 +34,53 @@ Running in production is pretty simple... just run server.js!
     node server.js
 
 ### Development
-While developing, turn on cake dev mode to automatically convert your .coffee files into .js files and place them in the "/app" folder.
+While developing, turn on cake dev mode to automatically convert your .coffee files in the "/src" directory into .js files in the "/app" folder.
 
     ./cake dev
 
 In addition, make sure that CodeKit is activated on your "/public/default" folder (or whatever theme is currently activated).  CodeKit will automatically convert CoffeeScript files to minified JavaScript ("/public/{theme}/coffee" => "/public/{theme}/js") and Less files to normal minified stylesheets ("/public/{theme}/less" => "/public/{theme}/css").
 
 ### Testing
+The application is setup to execute both unit (+supertest) and functional tests.  To simply run all of the tests, run the following command in the root of the application:
+
+    ./cake test
 
 #### Functional
 Still under development.
 
+Before running these tests, don't forget to have selenium running in the background!
+
+To run all functional tests:
+
+    ./cake test functional
+
+To run an individual functional test:
+
+    ./cake test functional index
+
+To run select functional tests:
+
+    ./cake test functional index,i18n
+
 #### Unit
 Still under development.
+
+To run all unit tests:
+
+    ./cake test unit
+
+To run an individual unit test:
+
+    ./cake test unit routes/foo
+
+To run select unit tests:
+
+    ./cake test unit routes/foo,routes/i18n
+
+### Tips
+
+#### 1. Adding javascripts and stylesheets on a per-page basis.
+#### 2. Adding "global" javascript variables.
 
 ## Tools
 - [CodeKit](http://incident57.com/codekit)
