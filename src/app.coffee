@@ -45,6 +45,9 @@ define ['async', 'express', 'fs', 'path', 'require', 'libs/i18n', 'libs/logger',
           res.locals.app.THEME = theme.theme
           res.locals.app.URL = req.url
           res.locals.app.VERSION = pkg.version
+
+          res.locals.app.CFD_THEME = res.locals.app.CFD + '/' + res.local.app.THEME
+
           subnext()
 
         # i18n middleware.
