@@ -1,19 +1,16 @@
 {
-  "name": "application-name",
-  "version": "0.0.1",
-  "private": true,
-  "scripts": {
-    "start": "node server.js"
-  },
+  "analyze": false,
+  "author": "Aaron Zampaglione <azampagl@azampagl.com>",
   "config": {
     "base_url": "",
     "cfd": "s",
-    "cookieSecret": "823u8fewjknvdshijihuy790q23hi0ni",
+    "cookieSecret": "jnoefwjhjofewy89r3y8vdsnkjds",
     "logDir": "./logs",
     "uploads": "up"
   },
   "dependencies": {
     "async": "*",
+    "coffee-script": "*",
     "express": "3.x",
     "jade": "*",
     "requirejs": "*",
@@ -27,5 +24,15 @@
     "mocha": "*",
     "soda": "git://github.com/LearnBoost/soda.git#master",
     "supertest": "*"
-  }
+  },
+  "engines": {
+    "node": "v0.8.x"
+  },
+  "name": "example-base",
+  "private": false,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "subdomain": "example-base",
+  "version": "1.0.0"
 }
