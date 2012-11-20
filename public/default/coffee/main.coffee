@@ -21,8 +21,11 @@ window.app.VENDOR_URL = window.app.VENDOR_URL or window.app.CFD + '/vendor'
 # Theme.
 window.app.THEME = window.app.THEME or 'default'
 
+# Cookie Free Domain Theme.
+window.app.CFD_THEME = window.app.CFD_THEME or window.app.CFD + '/' + window.app.THEME
+
 window.app.requirejs = requirejs.config
-  baseUrl: window.app.CFD + '/' + window.app.THEME + '/js'
+  baseUrl: window.app.CFD_THEME + '/js'
   paths:
     'vendor': window.app.VENDOR_URL
     'vendor/backbone': window.app.VENDOR_URL + '/backbone/backbone-0.9.2.min'

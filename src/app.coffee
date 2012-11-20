@@ -37,16 +37,17 @@ define ['async', 'express', 'fs', 'path', 'require', 'libs/i18n', 'libs/logger',
         app.use express.methodOverride()
         # Dynamic/Static helpers.
         app.use (req, res, subnext) ->
-          res.locals.app = res.locals.app || {}
-          res.locals.app.BASE_URL = req.protocol + '://' + req.get('host') + pkg.config.base_url
-          res.locals.app.CFD = req.protocol + '://' + pkg.config.cfd + "." + req.get('host').replace('www.', '')
-          res.locals.app.HOST = req.get('host')
-          res.locals.app.PROTOCOL = req.protocol
-          res.locals.app.THEME = theme.theme
-          res.locals.app.URL = req.url
-          res.locals.app.VERSION = pkg.version
+          locals = res.locals.app || {}
+          locals.BASE_URL = req.protocol + '://' + req.get('host') + pkg.config.base_url
+          locals.CFD = req.protocol + '://' + pkg.config.cfd + "." + req.get('host').replace('www.', '')
+          locals.HOST = req.get('host')
+          locals.PROTOCOL = req.protocol
+          locals.THEME = theme.theme
+          locals.URL = req.url
+          locals.VERSION = pkg.version
+          locals.CFD_THEME = locals.CFD + '/' + locals.THEME
 
-          res.locals.app.CFD_THEME = res.locals.app.CFD + '/' + res.local.app.THEME
+          res.locals.app = locals
 
           subnext()
 
