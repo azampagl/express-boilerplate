@@ -6,7 +6,7 @@
 #
 
 #
-define ['config/langs'], (langs) ->
+define [], () ->
 
   #
   # # / #
@@ -21,10 +21,6 @@ define ['config/langs'], (langs) ->
     # Called before every route.
     #
     before: (req, res, next) ->
-	  
-      # Store the languages in every page.
-      res.locals.common = res.locals.common or {}
-      res.locals.common.langs = langs
 
       next()
 

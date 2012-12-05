@@ -41,10 +41,12 @@ define ['async', 'express', 'fs', 'path', 'require', 'libs/i18n', 'libs/logger',
           locals.BASE_URL = req.protocol + '://' + req.get('host') + pkg.config.main.base_url
           locals.CFD = req.protocol + '://' + pkg.config.main.cfd + '.' + req.get('host').replace('www.', '')
           locals.HOST = req.get('host')
+          locals.LANGS = pkg.config.i18n.langs
           locals.PROTOCOL = req.protocol
           locals.THEME = theme.theme
           locals.URL = req.url
           locals.VERSION = pkg.version
+
           locals.CFD_THEME = locals.CFD + '/' + locals.THEME
 
           res.locals.app = locals
