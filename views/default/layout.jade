@@ -35,9 +35,9 @@ block body
               a(href='#', data-toggle='dropdown').dropdown-toggle #{strings.language} 
                 b.caret
               ul.dropdown-menu
-                each lang in common.langs
+                each lang in app.LANGS
                   li
-                    a(href='i18n/' + lang) #{strings['languages_' + lang]}
+                    a(href='i18n/' + lang) #{strings['languages_' + lang.replace('-', '_')]}
 
   .container-fluid
     .hero-unit
