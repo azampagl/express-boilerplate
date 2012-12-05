@@ -93,7 +93,7 @@ To run select unit tests:
 - [Selenium](http://seleniumhq.org) v*
 - [docco](http://jashkenas.github.com/docco) v*
 - [less](http://lesscss.org) v*
-- [requirejs](http://requirejs.org) v2.1.1
+- [requirejs](http://requirejs.org) v2.1.2
 - [jQuery](http://jquery.com) v1.8.2
 - [Bootstrap](http://twitter.github.com/bootstrap) v2.2.1
 - [Backbone](http://backbonejs.org) v0.9.2
