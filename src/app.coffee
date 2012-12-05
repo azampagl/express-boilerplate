@@ -91,6 +91,14 @@ define ['async', 'express', 'fs', 'path', 'require', 'libs/i18n', 'libs/logger',
 
         next()
     , (next) ->
+
+      # Redirect to www, if necessary.
+      app.all '*', (req, res, next) ->
+         if req.get('host').match(/^www/) == null
+           res.redirect(req.protocol + '://www.' + req.get('host'))
+         else
+           next()
+
       # Load the custom router lib.
       requirejs ['libs/router'], (Router) ->
         routes = [path.resolve(root + '/app/routes')]
