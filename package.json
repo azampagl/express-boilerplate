@@ -2,15 +2,22 @@
   "analyze": false,
   "author": "Aaron Zampaglione <azampagl@azampagl.com>",
   "config": {
-    "base_url": "",
-    "cfd": "s",
-    "cookieSecret": "jnoefwjhjofewy89r3y8vdsnkjds",
-    "logDir": "./logs",
-    "uploads": "up"
+    "main": {
+      "base_url": "",
+      "cfd": "s",
+      "cookieSecret": "jnoefwjhjofewy89r3y8vdsnkjds",
+      "logDir": "./logs",
+      "uploads": "up"
+    },
+    "i18n": {
+      "langs": [
+        "en-us",
+        "es"
+      ]
+    }
   },
   "dependencies": {
     "async": "*",
-    "coffee-script": "*",
     "express": "3.x",
     "jade": "*",
     "requirejs": "*",
@@ -25,14 +32,19 @@
     "soda": "git://github.com/LearnBoost/soda.git#master",
     "supertest": "*"
   },
+  "domains": [
+    "express-base.com",
+    "www.express-base.com",
+    "s.express-base.com"
+  ],
   "engines": {
     "node": "v0.8.x"
   },
   "name": "example-base",
   "private": false,
   "scripts": {
-    "start": "node server.js"
+    "start": "server.js"
   },
   "subdomain": "example-base",
-  "version": "1.0.0"
+  "version": "0.0.0"
 }
