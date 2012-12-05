@@ -34,13 +34,3 @@ define [], () ->
         # Javascript variables for the page.
         javascript:
           index: true
-
-  #
-  # # GET /error #
-  #
-  # Demonstrate an error.
-  #
-  '/error':
-    index: (req, res) ->
-      i = variable.notexist
-      res.send(200)
