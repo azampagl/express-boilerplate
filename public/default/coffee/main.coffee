@@ -30,7 +30,7 @@ window.app.requirejs = requirejs.config
     'vendor': window.app.VENDOR_URL
     'vendor/backbone': window.app.VENDOR_URL + '/backbone/backbone-0.9.2.min'
     'vendor/bootstrap': window.app.VENDOR_URL + '/bootstrap/bootstrap-2.2.1/js/bootstrap.min'
-    'vendor/underscore': window.app.VENDOR_URL + '/underscore/underscore-1.4.1.min'
+    'vendor/underscore': window.app.VENDOR_URL + '/underscore/underscore-1.4.3.min'
   shim:
     'vendor/backbone':
       deps: ['vendor/underscore']
@@ -39,6 +39,7 @@ window.app.requirejs = requirejs.config
 
 # Load our two hard dependencies.
 window.app.requirejs ['vendor/bootstrap', 'vendor/backbone'], ->
+
   # Find our designated script container and require its source.
   #
   #     script(type='text/javascript', data-src='myfile')
