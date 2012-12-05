@@ -14,5 +14,5 @@ define ['fs', 'path', 'winston'], (fs, path, winston) ->
   pkg = JSON.parse fs.readFileSync(path.resolve(root + '/package.json'))
   
   new (winston.Logger)(transports: [
-    new (winston.transports.File)(level: 'error', filename: path.resolve(pkg.config.logDir + '/error.log'))
+    new (winston.transports.File)(level: 'error', filename: path.resolve(pkg.config.main.logDir + '/error.log'))
   ])

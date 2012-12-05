@@ -30,16 +30,16 @@ define ['async', 'express', 'fs', 'path', 'require', 'libs/i18n', 'libs/logger',
         app.use express.compress()
         app.use express.static(path.resolve(root + '/public'))
         # Cookies and session support.
-        app.use(express.cookieParser(pkg.config.cookieSecret));
+        app.use(express.cookieParser(pkg.config.main.cookieSecret));
         app.use(express.cookieSession());
         # Body parsing.
-        app.use express.bodyParser(uploadDir: path.resolve(root + '/public/' + pkg.config.cfd))
+        app.use express.bodyParser(uploadDir: path.resolve(root + '/public/' + pkg.config.main.cfd))
         app.use express.methodOverride()
         # Dynamic/Static helpers.
         app.use (req, res, subnext) ->
           locals = res.locals.app || {}
-          locals.BASE_URL = req.protocol + '://' + req.get('host') + pkg.config.base_url
-          locals.CFD = req.protocol + '://' + pkg.config.cfd + "." + req.get('host').replace('www.', '')
+          locals.BASE_URL = req.protocol + '://' + req.get('host') + pkg.config.main.base_url
+          locals.CFD = req.protocol + '://' + pkg.config.main.cfd + '.' + req.get('host').replace('www.', '')
           locals.HOST = req.get('host')
           locals.PROTOCOL = req.protocol
           locals.THEME = theme.theme
