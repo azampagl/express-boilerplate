@@ -16,7 +16,7 @@ requirejs.config({
 // Require our app, initialize, and run.
 requirejs(['app'], function(App) {
   App(function(app) {
-    var port = process.env.PORT || process.env.VMC_APP_PORT || 3000;
+    var port = process.env.PORT || process.env.VMC_APP_PORT || 8080;
 	app.listen(port);
   });
 });
