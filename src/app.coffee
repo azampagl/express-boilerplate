@@ -32,6 +32,12 @@ define ['async', 'express', 'fs', 'path', 'require', 'libs/i18n', 'libs/logger',
         # Body parsing.
         app.use express.bodyParser(uploadDir: path.resolve(root + '/public/' + pkg.config.main.cfd))
         app.use express.methodOverride()
+        # Redirect to www before cookie parser is initiliazed.
+        app.use (req, res, subnext) ->
+           if req.get('host').match(/^www/) == null
+             res.redirect req.protocol + '://www.' + req.get('host')
+           else
+             subnext()
         # Cookies and session support.
         app.use express.cookieParser();
         app.use express.cookieSession({secret: pkg.config.cookie.secret, httpOnly: pkg.config.cookie.httpOnly, maxAge: pkg.config.cookie.maxAge});
@@ -95,14 +101,6 @@ define ['async', 'express', 'fs', 'path', 'require', 'libs/i18n', 'libs/logger',
 
         next()
     , (next) ->
-
-      # Redirect to www, if necessary.
-      app.all '*', (req, res, next) ->
-         if req.get('host').match(/^www/) == null
-           # Redirect to www.
-           res.redirect req.protocol + '://www.' + req.get('host')
-         else
-           next()
 
       # Load the custom router lib.
       requirejs ['libs/router'], (Router) ->
