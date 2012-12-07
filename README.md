@@ -14,6 +14,9 @@ The files are developed in CoffeeScript and then use cake to compile the server 
 - Every controller/route is RESTful.
 - Internationalization (i18n).
 - Themes.
+- Built with security in mind.
+  - CSRF protection (even works with continuous AJAX requests).
+  - XSS protection (with jade).
 - Documentation via Docco.
 - Unit testing via Mocha.
 - Functional testing via Soda (Selenium).
