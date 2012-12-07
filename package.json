@@ -5,9 +5,13 @@
     "main": {
       "base_url": "",
       "cfd": "s",
-      "cookieSecret": "jnoefwjhjofewy89r3y8vdsnkjds",
       "logDir": "./logs",
       "uploads": "up"
+    },
+    "cookie": {
+      "httpOnly": true,
+      "maxAge": null,
+      "secret": "jnoefwjhjofewy89r3y8vdsnkjds"
     },
     "i18n": {
       "langs": [

@@ -33,8 +33,8 @@ define ['async', 'express', 'fs', 'path', 'require', 'libs/i18n', 'libs/logger',
         app.use express.bodyParser(uploadDir: path.resolve(root + '/public/' + pkg.config.main.cfd))
         app.use express.methodOverride()
         # Cookies and session support.
-        app.use express.cookieParser(pkg.config.main.cookieSecret);
-        app.use express.cookieSession();
+        app.use express.cookieParser();
+        app.use express.cookieSession({secret: pkg.config.cookie.secret, httpOnly: pkg.config.cookie.httpOnly, maxAge: pkg.config.cookie.maxAge});
         # CSRF
         app.use express.csrf()
         # Dynamic/Static helpers.
@@ -99,7 +99,8 @@ define ['async', 'express', 'fs', 'path', 'require', 'libs/i18n', 'libs/logger',
       # Redirect to www, if necessary.
       app.all '*', (req, res, next) ->
          if req.get('host').match(/^www/) == null
-           res.redirect(req.protocol + '://www.' + req.get('host'))
+           # Redirect to www.
+           res.redirect req.protocol + '://www.' + req.get('host')
          else
            next()
 
