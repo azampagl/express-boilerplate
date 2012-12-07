@@ -29,12 +29,14 @@ define ['async', 'express', 'fs', 'path', 'require', 'libs/i18n', 'libs/logger',
         # Static file serving.
         app.use express.compress()
         app.use express.static(path.resolve(root + '/public'))
-        # Cookies and session support.
-        app.use(express.cookieParser(pkg.config.main.cookieSecret));
-        app.use(express.cookieSession());
         # Body parsing.
         app.use express.bodyParser(uploadDir: path.resolve(root + '/public/' + pkg.config.main.cfd))
         app.use express.methodOverride()
+        # Cookies and session support.
+        app.use express.cookieParser(pkg.config.main.cookieSecret);
+        app.use express.cookieSession();
+        # CSRF
+        app.use express.csrf()
         # Dynamic/Static helpers.
         app.use (req, res, subnext) ->
           locals = res.locals.app || {}
