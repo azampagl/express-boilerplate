@@ -43,11 +43,16 @@ define ['async', 'express', 'fs', 'path', 'require', 'libs/i18n', 'libs/logger',
         app.use express.cookieSession({secret: pkg.config.cookie.secret, httpOnly: pkg.config.cookie.httpOnly, maxAge: pkg.config.cookie.maxAge});
         # CSRF
         app.use express.csrf()
+        # On each response, set the CSRF token to the headers for ajax refresh.
+        app.use (req, res, subnext) ->
+          res.set('X-CSRF-Token', req.session._csrf);
+          subnext()
         # Dynamic/Static helpers.
         app.use (req, res, subnext) ->
           locals = res.locals.app || {}
           locals.BASE_URL = req.protocol + '://' + req.get('host') + pkg.config.main.base_url
           locals.CFD = req.protocol + '://' + pkg.config.main.cfd + '.' + req.get('host').replace('www.', '')
+          locals.CSRF = req.session._csrf
           locals.HOST = req.get('host')
           locals.LANGS = pkg.config.i18n.langs
           locals.PROTOCOL = req.protocol

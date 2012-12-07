@@ -40,6 +40,13 @@ window.app.requirejs = requirejs.config
 # Load our two hard dependencies.
 window.app.requirejs ['vendor/bootstrap', 'vendor/backbone'], ->
 
+  # Set/Get X-CSRF-Token before sending/after receiving ajax calls.
+  $.ajaxSetup
+    beforeSend: (xhr) ->
+      xhr.setRequestHeader 'X-CSRF-Token', window.app.CSRF
+    complete: (xhr) ->
+      window.app.CSRF = xhr.getResponseHeader('X-CSRF-Token')
+
   # Find our designated script container and require its source.
   #
   #     script(type='text/javascript', data-src='myfile')
