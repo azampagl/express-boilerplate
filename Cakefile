@@ -8,26 +8,23 @@ red   = '\x1B[0;31m'
 green = '\x1B[0;32m'
 reset = '\x1B[0m'
 
+# Node command.
+nodeCommand = 'node'
+
 # Coffee command.
 cmdCoffee = './coffee'
 
 #
 # Log a message to terminal.
 #
-# @param string message
-# @param string color
-# @param string explanation
-#
 log = (message, color, explanation) ->
   console.log color + message + reset + ' ' + (explanation or '')
 
 #
-# Compiles app.coffee and src directory to the app directory.
-#
-# @param function callback [optional]
+# Compiles "./src" directory to the "./app" directory.
 #
 build = (callback) ->
-  options = ['-c','-b', '-o', 'app', 'src']
+  options = ['-c', '-b', '-o', 'app', 'src']
   coffee = spawn cmdCoffee, options
   coffee.stdout.pipe process.stdout
   coffee.stderr.pipe process.stderr
@@ -37,32 +34,27 @@ task 'build', 'Build src directory.', ->
   build -> log "Success", green
 
 #
-# Mocha tests.
+# Functional tests.
 #
-# @param function callback [optional]
-#
-test = (callback) ->
-  options = [
-    '--compilers'
-    'coffee:coffee-script'
-    '--colors'
-    '--require'
-    'should'
-    '--require'
-    './server'
+functionalTest = (files, callback) ->
+  args = [
+    './app/tests/functional/run.js'
   ]
-  try
-    cmd = which.sync 'mocha' 
-    spec = spawn cmd, options
-    spec.stdout.pipe process.stdout 
-    spec.stderr.pipe process.stderr
-    spec.on 'exit', (status) -> callback?() if status is 0
-  catch err
-    log err.message, red
-    log "Mocha is not installed - try npm install mocha -g", red
 
-task 'test', 'Run Mocha tests.', ->
-  build -> test -> log "Success", green
+  # Append the files to the arguments.
+  args = args.concat(files)
+
+  node = spawn nodeCommand, args, []
+  node.stdout.pipe process.stdout 
+  node.stderr.pipe process.stderr
+  node.on 'exit', (status) -> callback?() if status is 0
+
+option '-i', '--input [FILES]', 'Test file(s) to run, seperated by commas.'
+task 'functionalTest', 'Run functional tests.', (options) ->
+  files = []  
+  if options.input
+    files = options.input.split(',')
+  build -> functionalTest files, () -> log "Success", green
 
 #
 # Constantly watch coffee files while in dev.

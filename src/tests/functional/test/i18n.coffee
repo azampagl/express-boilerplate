@@ -1,4 +1,6 @@
 #
+# *(c) 2012 Aaron Zampaglione <azampagl@azampagl.com>*
+#
 # Test the i18n page (change languages).
 #
 #  1. Launch the homepage.
@@ -7,10 +9,10 @@
 #  4. Make sure a cookie exists for "lang" (and that it equals "es").
 #  5. Make sure the title says "Título".
 #
-# *(c) 2012 Aaron Zampaglione <azampagl@azampagl.com>*
+
 #
 define [], () ->
-  (browser, next) ->
+  (browser, done) ->
     browser
       .chain
       .session()
@@ -22,4 +24,4 @@ define [], () ->
       .assertTitle('Título')
       .end (err) ->
         browser.testComplete ->
-          next(err)
+          done(err)

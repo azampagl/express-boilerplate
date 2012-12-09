@@ -49,21 +49,20 @@ The application is setup to execute both unit (+supertest) and functional tests.
     ./cake test
 
 #### Functional
-Still under development.
 
 Before running these tests, don't forget to have selenium running in the background!
 
 To run all functional tests:
 
-    ./cake test functional
+    ./cake testFunctional
 
 To run an individual functional test:
 
-    ./cake test functional index
+    ./cake -i index tesFunctional
 
 To run select functional tests:
 
-    ./cake test functional index,i18n
+    ./cake -i index,i18n tesFunctional
 
 #### Unit
 Still under development.

@@ -9,4 +9,4 @@ define
   # The port where selenium is running.
   port: 4444
   # The base url for the tests.
-  url: 'http://www.localhost:3000'
+  url: 'http://www.localhost:8080'
