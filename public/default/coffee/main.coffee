@@ -29,7 +29,7 @@ window.app.requirejs = requirejs.config
   paths:
     'vendor': window.app.VENDOR_URL
     'vendor/backbone': window.app.VENDOR_URL + '/backbone/backbone-0.9.2.min'
-    'vendor/bootstrap': window.app.VENDOR_URL + '/bootstrap/bootstrap-2.2.1/js/bootstrap.min'
+    'vendor/bootstrap': window.app.VENDOR_URL + '/bootstrap/bootstrap-2.2.2/js/bootstrap.min'
     'vendor/underscore': window.app.VENDOR_URL + '/underscore/underscore-1.4.3.min'
   shim:
     'vendor/backbone':
