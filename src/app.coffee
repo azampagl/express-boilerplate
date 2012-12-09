@@ -18,6 +18,9 @@ define ['async', 'express', 'fs', 'path', 'require', 'libs/i18n', 'libs/logger',
     # Load the package.json file for config settings.
     pkg = JSON.parse fs.readFileSync(path.resolve(root + '/package.json'))
 
+    # Get the config from the package.
+    config = pkg.config
+
     # Init express.
     app = express()
 
@@ -30,17 +33,21 @@ define ['async', 'express', 'fs', 'path', 'require', 'libs/i18n', 'libs/logger',
         app.use express.compress()
         app.use express.static(path.resolve(root + '/public'))
         # Body parsing.
-        app.use express.bodyParser(uploadDir: path.resolve(root + '/public/' + pkg.config.main.cfd))
+        app.use express.bodyParser(uploadDir: path.resolve(root + '/public/' + config.main.uploadDir))
         app.use express.methodOverride()
         # Redirect to www before cookie parser is initiliazed.
         app.use (req, res, subnext) ->
-           if req.get('host').match(/^www/) == null
+           if req.get('host').match(/^www/) == null and req.get('host').match(config.main.cfd) == null
              res.redirect req.protocol + '://www.' + req.get('host')
            else
              subnext()
         # Cookies and session support.
         app.use express.cookieParser();
-        app.use express.cookieSession({secret: pkg.config.cookie.secret, httpOnly: pkg.config.cookie.httpOnly, maxAge: pkg.config.cookie.maxAge});
+        app.use express.cookieSession(
+          secret: config.cookie.secret,
+          httpOnly: config.cookie.httpOnly,
+          maxAge: config.cookie.maxAge
+        );
         # CSRF
         app.use express.csrf()
         # On each response, set the CSRF token to the headers for ajax refresh.
@@ -50,13 +57,13 @@ define ['async', 'express', 'fs', 'path', 'require', 'libs/i18n', 'libs/logger',
         # Dynamic/Static helpers.
         app.use (req, res, subnext) ->
           locals = res.locals.app || {}
-          locals.BASE_URL = req.protocol + '://' + req.get('host') + pkg.config.main.base_url
-          locals.CFD = req.protocol + '://' + pkg.config.main.cfd + '.' + req.get('host').replace('www.', '')
+          locals.BASE_URL = req.protocol + '://' + req.get('host') + config.main.base_url
+          locals.CFD = req.protocol + '://' + config.main.cfd + '.' + req.get('host').replace('www.', '')
           locals.CSRF = req.session._csrf
           locals.HOST = req.get('host')
-          locals.LANGS = pkg.config.i18n.langs
+          locals.LANGS = config.i18n.langs
           locals.PROTOCOL = req.protocol
-          locals.THEME = theme.theme
+          locals.THEME = theme.themeName
           locals.URL = req.url
           locals.VERSION = pkg.version
 

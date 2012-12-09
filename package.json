@@ -6,7 +6,7 @@
       "base_url": "",
       "cfd": "s",
       "logDir": "./logs",
-      "uploads": "up"
+      "uploadDir": "up"
     },
     "cookie": {
       "httpOnly": true,
