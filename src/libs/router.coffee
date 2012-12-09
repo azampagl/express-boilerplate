@@ -13,9 +13,9 @@ define ['libs/i18n', 'underscore'], (i18n, _) ->
   # 
   # Maps a routes actions to the proper express routes.
   #
-  # Assuming we call Router.map on 'routes/foo.js' (which contains actions),
+  # Assuming we call router.map on 'routes/foo.js' (which contains actions),
   # 
-  #     Router.map('foo', { ... })
+  #     router.map('foo', { ... })
   # 
   # express would recognize the following routes: 
   #
@@ -25,7 +25,7 @@ define ['libs/i18n', 'underscore'], (i18n, _) ->
   #       next()
   #
   #     // GET /foo/foo
-  #     // Use a route middleware (another view).
+  #     // Use route middleware (another view).
   #     '/foo/foo':
   #       index: [i18n.view('routes/foo/nls/index'), (req, res) ->
   #         res.theme 'foo/foo'
@@ -34,7 +34,7 @@ define ['libs/i18n', 'underscore'], (i18n, _) ->
   #     // GET /foo/bar
   #     'bar':
   #       index: (req, res) ->
-  #         res.theme 'foo/bar'
+  #         res.render 'foo/bar'
   #
   #     // GET /foo
   #     index: (req, res) ->
