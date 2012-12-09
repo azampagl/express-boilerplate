@@ -24,36 +24,45 @@ define ['async', 'express', 'fs', 'path', 'require', 'libs/i18n', 'libs/logger',
     # Init express.
     app = express()
 
+    #
+    # Main configuration.
+    #
     async.series [(next) ->
       app.configure ->
 	    # View engine.
         app.set 'views', path.resolve(root + '/views')
         app.set 'view engine', 'jade'
+
         # Static file serving.
         app.use express.compress()
         app.use express.static(path.resolve(root + '/public'))
+
         # Body parsing.
         app.use express.bodyParser(uploadDir: path.resolve(root + '/public/' + config.main.uploadDir))
         app.use express.methodOverride()
+
         # Redirect to www before cookie parser is initiliazed.
         app.use (req, res, subnext) ->
            if req.get('host').match(/^www/) == null and req.get('host').match(config.main.cfd) == null
              res.redirect req.protocol + '://www.' + req.get('host')
            else
              subnext()
+
         # Cookies and session support.
         app.use express.cookieParser();
         app.use express.cookieSession(
           secret: config.cookie.secret,
           httpOnly: config.cookie.httpOnly,
           maxAge: config.cookie.maxAge
-        );
+        )
+
         # CSRF
         app.use express.csrf()
         # On each response, set the CSRF token to the headers for ajax refresh.
         app.use (req, res, subnext) ->
           res.set('X-CSRF-Token', req.session._csrf);
           subnext()
+
         # Dynamic/Static helpers.
         app.use (req, res, subnext) ->
           locals = res.locals.app || {}
@@ -75,13 +84,18 @@ define ['async', 'express', 'fs', 'path', 'require', 'libs/i18n', 'libs/logger',
 
         # i18n middleware.
         app.use i18n.middleware()
+
         # Theme middleware.
         app.use theme.middleware()
+
         # Router.
         app.use app.router
 
         next()
 
+    #
+    # Environment specific configuration.
+    #
     , (next) ->
       # In development, display errors.
       app.configure 'development', ->
@@ -112,10 +126,14 @@ define ['async', 'express', 'fs', 'path', 'require', 'libs/i18n', 'libs/logger',
           logger.error(err.stack)
 
         next()
+
+    #
+    # Finally, load routes.
+    #
     , (next) ->
 
       # Load the custom router lib.
-      requirejs ['libs/router'], (Router) ->
+      requirejs ['libs/router'], (router) ->
         routes = [path.resolve(root + '/app/routes')]
 
         while routes.length
@@ -133,10 +151,14 @@ define ['async', 'express', 'fs', 'path', 'require', 'libs/i18n', 'libs/logger',
               # Remove the .js from the the route.
               route = route.replace(/.+\/routes\//, '').match(/(.*)\.[^.]+$/)[1]
               # Map the routes.
-              Router.map(app, route, actions)
+              router.map(app, route, actions)
           )(route)
 
         next()
+
+    #
+    # Done initializing the app.
+    #
     ], () ->
-	  # Done with our app initialization.
+	  # Return to the calling method.
       done(app)
