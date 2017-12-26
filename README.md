@@ -90,7 +90,7 @@ To run select unit tests:
 ## Resources
 - [CoffeeScript](http://coffeescript.org) v*
 - [express](http://expressjs.com) v3.x
-- [mocha](http://visionmedia.github.com/mocha) v*
+- [mocha](http://mochajs.org/) v*
 - [soda](http://learnboost.github.com/soda) v*
 - [Selenium](http://seleniumhq.org) v*
 - [docco](http://jashkenas.github.com/docco) v*
